@@ -1,15 +1,11 @@
 const inventoryButton = $('.inventory-button');
 const inventoryContainer = $('.inventory-container');
-
 const ordersButton = $('.orders-button');
 const ordersContainer = $('.orders-container');
-
-let item = {
-  title: 'Test Item',
-  url: 'https://pbs.twimg.com/profile_images/573299500145483776/QA3TyDHc.jpeg',
-  description: 'Pretty good item',
-  price: '1,000'
-};
+const cartContainer = $('.cart-container');
+const itemList = $('.item-list');
+let cart = [];
+const checkoutButton = $('.checkout');
 
 function fetchInventory() {
   fetch('/api/v1/inventory')
@@ -24,9 +20,10 @@ function appendAllInventoryItems(inventory) {
 
 function appendInventoryItem(item) {
   inventoryContainer.append(`
-    <div class='item'>
+    <div class='item' >
         <p class='item-title'>${item.title}</p>
         <img class='item-image' src=${item.url} alt='item image'/>
+        <button class='add-to-cart' data-title="${item.title}" data-price=${item.price}>Add to Cart</button>
         <p class='item-description'>${item.description}</p>
         <p class='item-price>$${item.price}</p>
     </div>`);
@@ -51,5 +48,55 @@ function appendOrder(order) {
     </div>`);
 }
 
-inventoryButton.on('click', () => fetchInventory());
-ordersButton.on('click', () => fetchOrderHistory());
+function addToCart(e) {
+  let price = e.target.dataset.price;
+  let title = e.target.dataset.title;
+  let newCartItem = { price: price, title: title };
+  cart.push(newCartItem);
+  appendCartItem(newCartItem);
+  localStorage.setItem(
+    `title${localStorage.length}`,
+    JSON.stringify(newCartItem)
+  );
+}
+
+function appendCartItem(item) {
+  itemList.append(`<div class='cart-item'>
+        <p class='cart-title'>${item.title}</p>
+        <p class='cart-price'>${item.price}</p>
+    </div>`);
+}
+
+function checkout() {
+  let totalPrice = cart.reduce((acc, item) => {
+    let price = parseFloat(item.price);
+    return (acc += price);
+  }, 0);
+  totalPrice = totalPrice.toFixed(2);
+
+  let newOrder = {
+    total_price: totalPrice,
+    date: new Date()
+  };
+
+  cart = [];
+  localStorage.clear();
+  postNewOrder(newOrder);
+}
+
+function postNewOrder(newOrder) {
+  fetch('/api/v1/order_history', {
+    method: 'POST',
+    body: JSON.stringify(newOrder),
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  })
+    .then(response => response.json())
+    .then(response => console.log(response));
+}
+
+inventoryButton.on('click', fetchInventory);
+ordersButton.on('click', fetchOrderHistory);
+inventoryContainer.on('click', '.add-to-cart', addToCart);
+checkoutButton.on('click', checkout);
