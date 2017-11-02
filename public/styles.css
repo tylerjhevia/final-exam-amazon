@@ -1,9 +1,55 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.main {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
+header {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  height: 10vh;
+}
+
 .page-title {
   text-align: center;
 }
 
 .inventory-container {
+  align-items: center;
   display: flex;
+  flex-wrap: wrap;
+  height: 90vh;
+  justify-content: center;
+  width: 80vw;
+}
+
+.cart-container,
+.orders-container {
+  border: 1px solid black;
+  display: none;
+  height: 80vh;
+  overflow: scroll;
+  width: 10vw;
+}
+
+.icon {
+  height: 10vw;
+  width: 10vw;
+}
+
+.right-arrow-icon {
+  transform: rotate(180deg);
+}
+
+.inventory-button {
+  height: auto;
 }
 
 .item-image {

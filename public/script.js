@@ -6,6 +6,8 @@ const cartContainer = $('.cart-container');
 const itemList = $('.item-list');
 let cart = [];
 const checkoutButton = $('.checkout');
+const leftArrow = $('.left-arrow-icon');
+const rightArrow = $('.right-arrow-icon');
 
 function fetchInventory() {
   fetch('/api/v1/inventory')
