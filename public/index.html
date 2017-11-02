@@ -17,7 +17,7 @@
 
     <div class='main'>
 
-        <section class='orders-container'>
+        <section class='orders-container hidden'>
             <button class='orders-button'>Fetch Orders</button>
         </section>
         <div class='orders-arrow'>
@@ -26,14 +26,14 @@
         <section class='inventory-container'>
             <button class='inventory-button'>Fetch Inventory</button>
         </section>
-        <section class='cart-container'>
+        <div class='cart-arrow'>
+            <img class='icon left-arrow-icon' src='https://image.flaticon.com/icons/svg/25/25299.svg' />
+        </div>
+        <section class='cart-container hidden'>
             <h4 class='items'></h4>
             <div class='item-list'></div>
             <button class='checkout'>Checkout and Purchase</button>
         </section>
-        <div class='cart-arrow'>
-            <img class='icon left-arrow-icon' src='https://image.flaticon.com/icons/svg/25/25299.svg' />
-        </div>
 
     </div>
     <script src='./jquery.js'></script>

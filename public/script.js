@@ -98,7 +98,17 @@ function postNewOrder(newOrder) {
     .then(response => console.log(response));
 }
 
+function revealCart() {
+  $(cartContainer).toggleClass('hidden');
+}
+
+function revealOrders() {
+  $(ordersContainer).toggleClass('hidden');
+}
+
 inventoryButton.on('click', fetchInventory);
 ordersButton.on('click', fetchOrderHistory);
 inventoryContainer.on('click', '.add-to-cart', addToCart);
 checkoutButton.on('click', checkout);
+rightArrow.on('click', revealOrders);
+leftArrow.on('click', revealCart);

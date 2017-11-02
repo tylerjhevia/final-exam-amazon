@@ -33,14 +33,15 @@ header {
 .cart-container,
 .orders-container {
   border: 1px solid black;
-  display: none;
   height: 80vh;
   overflow: scroll;
-  width: 10vw;
+  width: 50vw;
 }
 
 .icon {
   height: 10vw;
+  margin: 10px;
+  opacity: .75;
   width: 10vw;
 }
 
@@ -61,4 +62,8 @@ header {
   display: flex;
   flex-direction: column;
   width: 25%;
+}
+
+.hidden {
+  display: none;
 }
