@@ -1,5 +1,8 @@
-const test = $('.test');
+const inventoryButton = $('.inventory-button');
 const inventoryContainer = $('.inventory-container');
+
+const ordersButton = $('.orders-button');
+const ordersContainer = $('.orders-container');
 
 let item = {
   title: 'Test Item',
@@ -15,6 +18,7 @@ function fetchInventory() {
 }
 
 function appendAllInventoryItems(inventory) {
+  inventoryContainer.empty();
   inventory.forEach(item => appendInventoryItem(item));
 }
 
@@ -28,4 +32,24 @@ function appendInventoryItem(item) {
     </div>`);
 }
 
-test.on('click', () => fetchInventory());
+function fetchOrderHistory() {
+  fetch('/api/v1/order_history')
+    .then(response => response.json())
+    .then(response => appendAllOrders(response));
+}
+
+function appendAllOrders(orders) {
+  ordersContainer.empty();
+  orders.forEach(order => appendOrder(order));
+}
+
+function appendOrder(order) {
+  ordersContainer.append(`
+    <div class='order'>
+         <p class='order-price'>${order.total_price}</p> 
+         <p class='order-date'>${order.date}</p> 
+    </div>`);
+}
+
+inventoryButton.on('click', () => fetchInventory());
+ordersButton.on('click', () => fetchOrderHistory());
