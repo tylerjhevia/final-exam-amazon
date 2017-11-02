@@ -6,6 +6,19 @@ const cartContainer = $('.cart-container');
 const itemList = $('.item-list');
 let cart = [];
 const checkoutButton = $('.checkout');
+const leftArrow = $('.left-arrow-icon');
+const rightArrow = $('.right-arrow-icon');
+
+fetchInventory();
+fetchOrderHistory();
+getCartItems();
+
+function getCartItems() {
+  let cartKeys = Object.keys(localStorage);
+  cartKeys.map(key => {
+    appendCartItem(JSON.parse(localStorage[key]));
+  });
+}
 
 function fetchInventory() {
   fetch('/api/v1/inventory')
@@ -96,7 +109,27 @@ function postNewOrder(newOrder) {
     .then(response => console.log(response));
 }
 
+function revealCart() {
+  console.log('hey');
+  $(cartContainer).toggleClass('hidden');
+}
+
+function revealOrders() {
+  console.log('hey');
+  $(ordersContainer).toggleClass('hidden');
+}
+
+function flipRightArrow(rightArrow) {
+  $(rightArrow).toggleClass('rotate');
+}
+
+function flipLeftArrow(leftArrow) {
+  $(leftArrow).toggleClass('rotate');
+}
+
 inventoryButton.on('click', fetchInventory);
 ordersButton.on('click', fetchOrderHistory);
 inventoryContainer.on('click', '.add-to-cart', addToCart);
 checkoutButton.on('click', checkout);
+rightArrow.on('click', revealOrders);
+leftArrow.on('click', revealCart);

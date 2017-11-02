@@ -15,16 +15,25 @@
         <h1 class='page-title'>Amazon Bay</h1>
     </header>
 
-    <section class='inventory-container'></section>
-    <section class='orders-container'></section>
-    <section class='cart-container'>
-        <h4 class='items'></h4>
-        <div class='item-list'></div>
-        <button class='checkout'>Checkout and Purchase</button>
-    </section>
-    <button class='inventory-button'>Fetch Inventory</button>
-    <button class='orders-button'>Fetch Orders</button>
+    <div class='main'>
 
+        <section class='orders-container hidden'>
+        </section>
+        <div class='orders-arrow'>
+            <img class='icon right-arrow-icon' src='https://image.flaticon.com/icons/svg/25/25299.svg' />
+        </div>
+        <section class='inventory-container'>
+        </section>
+        <div class='cart-arrow'>
+            <img class='icon left-arrow-icon' src='https://image.flaticon.com/icons/svg/25/25299.svg' />
+        </div>
+        <section class='cart-container hidden'>
+            <h4 class='items'></h4>
+            <div class='item-list'></div>
+            <button class='checkout'>Checkout and Purchase</button>
+        </section>
+
+    </div>
     <script src='./jquery.js'></script>
     <script src='./script.js'></script>
 </body>
