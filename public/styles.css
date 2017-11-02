@@ -1,1 +1,18 @@
-.stylse
+.page-title {
+  text-align: center;
+}
+
+.inventory-container {
+  display: flex;
+}
+
+.item-image {
+  height: 100px;
+  width: 100px;
+}
+
+.item {
+  display: flex;
+  flex-direction: column;
+  width: 25%;
+}

@@ -29,12 +29,12 @@ app.get('/api/v1/inventory', (request, response) => {
 app.post('/api/v1/inventory', (request, response) => {
   const item = request.body;
 
-  const keys = ['title', 'description', 'image-url', 'price'];
+  const keys = ['title', 'description', 'url', 'price'];
 
   for (const requiredParameter of keys) {
     if (!item[requiredParameter]) {
       return response.status(422).send({
-        error: `Expected format: {'title': <string>, 'description': <string>, 'image-url': <string>, 'price': <number>}. The request is missing the following property: ${requiredParameter}.`
+        error: `Expected format: {'title': <string>, 'description': <string>, 'url': <string>, 'price': <number>}. The request is missing the following property: ${requiredParameter}.`
       });
     }
   }

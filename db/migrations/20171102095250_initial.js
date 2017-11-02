@@ -4,7 +4,7 @@ exports.up = function(knex, Promise) {
       table.increments('id').primary();
       table.string('title');
       table.string('description');
-      table.string('image-url');
+      table.string('url');
       table.decimal('price');
 
       table.timestamps(true, true);
