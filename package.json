@@ -1,13 +1,29 @@
 {
-  "name": "final-exam",
+  "name": "BYOB",
   "version": "1.0.0",
   "description": "",
-  "main": "server.js",
+  "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "NODE_ENV=test PORT=3001 mocha",
     "start": "node server.js"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "chai": "^4.1.2",
+    "express": "^4.16.1",
+    "express-cors": "0.0.3",
+    "knex": "^0.13.0",
+    "pg": "^7.3.0"
+  },
+  "devDependencies": {
+    "chai": "^4.1.2",
+    "chai-http": "^3.0.0",
+    "eslint": "^4.8.0",
+    "eslint-config-airbnb-base": "^12.0.2",
+    "eslint-plugin-import": "^2.7.0",
+    "mocha": "^4.0.0"
+  }
 }
