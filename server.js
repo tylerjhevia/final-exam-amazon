@@ -70,3 +70,5 @@ app.post('/api/v1/order_history', (request, response) => {
     .then(order => response.status(201).json(order))
     .catch(error => response.status(500).json({ error }));
 });
+
+module.exports = app;
