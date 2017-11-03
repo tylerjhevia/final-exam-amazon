@@ -4,10 +4,11 @@ const ordersButton = $('.orders-button');
 const ordersContainer = $('.orders-container');
 const cartContainer = $('.cart-container');
 const itemList = $('.item-list');
-let cart = [];
 const checkoutButton = $('.checkout');
 const leftArrow = $('.left-arrow-icon');
 const rightArrow = $('.right-arrow-icon');
+let cart = [];
+let totalPrice = 0;
 
 fetchInventory();
 fetchOrderHistory();
@@ -56,17 +57,24 @@ function appendAllOrders(orders) {
 function appendOrder(order) {
   ordersContainer.append(`
     <div class='order'>
-         <p class='order-price'>${order.total_price}</p> 
-         <p class='order-date'>${order.date}</p> 
+    <p class='order-label'>Order</p>
+         <p class='order-price'>Price: ${order.total_price}</p> 
+         <p class='order-date'>Date: ${order.date}</p> 
     </div>`);
 }
 
 function addToCart(e) {
   let price = e.target.dataset.price;
   let title = e.target.dataset.title;
+
+  totalPrice += parseFloat(price);
+  $('.total-price').text(`${totalPrice.toFixed(2)}`);
+
   let newCartItem = { price: price, title: title };
+
   cart.push(newCartItem);
   appendCartItem(newCartItem);
+
   localStorage.setItem(
     `title${localStorage.length}`,
     JSON.stringify(newCartItem)
@@ -93,8 +101,17 @@ function checkout() {
   };
 
   cart = [];
+
   localStorage.clear();
+  itemList.empty();
+  totalPrice = 0;
+
   postNewOrder(newOrder);
+}
+
+function resetPrice() {
+  totalPrice = 0;
+  $('.total-price').text(totalPrice);
 }
 
 function postNewOrder(newOrder) {
@@ -110,12 +127,10 @@ function postNewOrder(newOrder) {
 }
 
 function revealCart() {
-  console.log('hey');
   $(cartContainer).toggleClass('hidden');
 }
 
 function revealOrders() {
-  console.log('hey');
   $(ordersContainer).toggleClass('hidden');
 }
 
@@ -133,3 +148,5 @@ inventoryContainer.on('click', '.add-to-cart', addToCart);
 checkoutButton.on('click', checkout);
 rightArrow.on('click', revealOrders);
 leftArrow.on('click', revealCart);
+$('.left-x').on('click', revealOrders);
+$('.right-x').on('click', revealCart);
