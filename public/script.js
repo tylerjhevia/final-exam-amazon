@@ -50,7 +50,8 @@ function fetchOrderHistory() {
 }
 
 function appendAllOrders(orders) {
-  ordersContainer.empty();
+  $('.order').remove();
+  // ordersContainer.empty();
   orders.forEach(order => appendOrder(order));
 }
 
