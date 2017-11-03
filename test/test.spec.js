@@ -113,6 +113,22 @@ describe('Order history', () => {
         done();
       });
     });
+    it('should respond with an error if a required field is missing from the request', done => {
+      chai
+        .request(server)
+        .post('/api/v1/order_history')
+        .send({
+          total_price: '400.45'
+        })
+        .end((error, response) => {
+          response.should.have.status(422);
+          response.should.be.json;
+          response.body.error.should.equal(
+            `Expected format: {'total_price': <number>, 'date': <string>}. The request is missing the following property: date.`
+          );
+          done();
+        });
+    });
   });
 
   describe('POST /api/v1/order_history', () => {
@@ -144,7 +160,26 @@ describe('Order history', () => {
         .get('/api/v1/order_history')
         .end((error, response) => {
           response.should.have.status(200);
-          response.body.length.should.equal(5);
+          response.body.length.should.equal(4);
+        });
+    });
+
+    it('should respond with an error if a required field is missing from the request', done => {
+      chai
+        .request(server)
+        .post('/api/v1/inventory')
+        .send({
+          title: 'Test title',
+          description: 'This is an item',
+          url: 'neatpic.cool'
+        })
+        .end((error, response) => {
+          response.should.have.status(422);
+          response.should.be.json;
+          response.body.error.should.equal(
+            `Expected format: {'title': <string>, 'description': <string>, 'url': <string>, 'price': <number>}. The request is missing the following property: price.`
+          );
+          done();
         });
     });
   });

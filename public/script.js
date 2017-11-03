@@ -51,7 +51,6 @@ function fetchOrderHistory() {
 
 function appendAllOrders(orders) {
   $('.order').remove();
-  // ordersContainer.empty();
   orders.forEach(order => appendOrder(order));
 }
 
@@ -105,7 +104,7 @@ function checkout() {
 
   localStorage.clear();
   itemList.empty();
-  totalPrice = 0;
+  resetPrice();
 
   postNewOrder(newOrder);
 }
