@@ -33,14 +33,14 @@ function appendAllInventoryItems(inventory) {
 }
 
 function appendInventoryItem(item) {
-  console.log('item', item);
+  console.log('item', item.price);
   inventoryContainer.append(`
     <div class='item' >
         <p class='item-title'>${item.title}</p>
 
-        <img class='item-image' src='${item.url}' alt='item image'/>
+        <img class='item-image' src='${item.url}' alt='item image' />
+        <p class='item-price'>$ ${item.price}</p>
         <button class='add-to-cart' data-title="${item.title}" data-price='${item.price}'>Add to Cart</button>
-        <p class='item-price>$ ${item.price}</p>
         <p class='item-description'>${item.description}</p>
     </div>`);
 }
