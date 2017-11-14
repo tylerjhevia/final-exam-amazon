@@ -2,7 +2,9 @@
 
 ### Overview 
 
-This app allows users to add items to a shopping cart, see the combined price of the items they've selected, and then checkout. 
+This app allows users to add items to a shopping cart, see the combined price of the items they've selected, and then checkout.
+
+[**Deployed app**](https://th-amazon-bay.herokuapp.com/) 
 
 ### Technologies Used
 
