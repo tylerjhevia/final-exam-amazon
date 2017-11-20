@@ -133,7 +133,15 @@ header {
 .right-x {
   align-self: flex-end;
   height: 5vw;
+  margin: 10px;
   width: 5vw;
+}
+
+.left-x:hover,
+.right-x:hover,
+.left-arrow-icon:hover,
+.right-arrow-icon:hover {
+  cursor: pointer;
 }
 
 .item-description {
