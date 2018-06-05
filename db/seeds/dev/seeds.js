@@ -31,6 +31,13 @@ exports.seed = function(knex, Promise) {
         url:
           'https://cdn1.sharperimage.com/si/img/productImages/205855/205855-z3.jpg',
         price: 50.34
+      },
+      {
+        title: 'Inflatable University of Florida Gator',
+        description: 'Go Gators',
+        url:
+          'https://www.cdn-outlet.com/photos/options/8125978-209-zoomin.jpg',
+        price: 69.69
       }
     ]);
   });
